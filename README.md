@@ -37,6 +37,19 @@ Com o ambiente configurado, execute o agente para coletar orçamentos e integrá
 python orcamentos_agent.py
 ```
 
+## Mini-jogo: Moeda na Piscina
+
+Para relaxar enquanto espera os orçamentos chegarem, experimente o mini-jogo
+`piscina_da_moeda.py`. O objetivo é encontrar a moeda perdida em uma piscina
+antes que o fôlego acabe.
+
+```
+python piscina_da_moeda.py
+```
+
+Você define o tamanho da piscina e recebe pistas baseadas na distância até a
+moeda a cada mergulho. Boa sorte!
+
 Este script (a ser adicionado no futuro) irá:
 
 - Buscar orçamentos recebidos via WhatsApp nos últimos 7 dias
