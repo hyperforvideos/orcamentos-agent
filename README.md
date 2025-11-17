@@ -76,3 +76,33 @@ python password_store.py list
 O arquivo `credentials.db` gerado pode ser armazenado com permissões restritas
 e, idealmente, em um volume criptografado. Faça backups seguros e utilize TLS
 ao transmitir credenciais pela rede.
+
+## Configuração do Visual Studio Code
+
+### Autorização de Microfone para Conversação por Voz
+
+Este repositório inclui configurações do VS Code (`.vscode/settings.json`) que habilitam o uso do microfone para funcionalidades de voz, como o GitHub Copilot Voice e outros assistentes por voz.
+
+#### Funcionalidades Habilitadas:
+
+- **Entrada de áudio**: Configurações de acessibilidade para captura de voz
+- **GitHub Copilot Voice**: Suporte para comandos de voz com Copilot
+- **Timeout de fala**: Configurado para 1200ms para melhor captura de comandos
+- **Ativação por palavra-chave**: Configurada para chat inline
+
+#### Como Usar:
+
+1. Abra o repositório no Visual Studio Code
+2. As configurações de microfone serão aplicadas automaticamente
+3. Certifique-se de que o VS Code tem permissão para acessar seu microfone nas configurações do sistema operacional:
+   - **Windows**: Configurações → Privacidade → Microfone
+   - **macOS**: Preferências do Sistema → Segurança e Privacidade → Microfone
+   - **Linux**: Verifique as permissões de áudio do seu ambiente
+
+4. Para usar o GitHub Copilot Voice:
+   - Instale a extensão "GitHub Copilot Voice" do marketplace
+   - Use atalhos de teclado ou comandos de voz para interagir com o Copilot
+
+#### Nota de Segurança:
+
+As configurações de workspace habilitam confiança no workspace para permitir funcionalidades avançadas. Certifique-se de revisar o código antes de habilitar essas funcionalidades em projetos de fontes não confiáveis.
