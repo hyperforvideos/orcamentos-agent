@@ -1,0 +1,36 @@
+{
+  // Configurações de permissões para uso de microfone
+  // Settings for microphone permissions and voice features
+  
+  "security.workspace.trust.enabled": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  
+  // Habilitar entrada de áudio para extensões do VS Code
+  // Enable audio input for VS Code extensions
+  "accessibility.voice.speechTimeout": 1200,
+  "accessibility.voice.keywordActivation": "inlineChat",
+  
+  // Permissões para GitHub Copilot Voice e outras funcionalidades de voz
+  // Permissions for GitHub Copilot Voice and other voice features
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "python": true
+  },
+  
+  // Configurações de privacidade e segurança
+  // Privacy and security settings
+  "telemetry.telemetryLevel": "all",
+  
+  // Configurações adicionais para melhor experiência com voz
+  // Additional settings for better voice experience
+  "workbench.editor.enablePreview": false,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.acceptSuggestionOnEnter": "on"
+}
