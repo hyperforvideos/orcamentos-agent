@@ -84,7 +84,7 @@ def detect_spectral_peaks(
         hop_length = n_fft // 4
 
     # 1. Compute STFT with Blackman-Harris window
-    stft_result = _compute_stft(audio, n_fft, hop_length)
+    stft_result = _compute_stft(audio, n_fft, hop_length, sample_rate)
     if stft_result is None:
         return []
 
@@ -120,8 +120,15 @@ def _compute_stft(
     audio: NDArray[np.floating],
     n_fft: int,
     hop_length: int,
+    sample_rate: int = 44100,
 ) -> Optional[Tuple[NDArray[np.complex128], NDArray[np.floating], NDArray[np.floating]]]:
     """Compute STFT with Blackman-Harris window.
+
+    Args:
+        audio: Audio samples as numpy array
+        n_fft: FFT size
+        hop_length: Hop length between frames
+        sample_rate: Audio sample rate in Hz
 
     Returns:
         Tuple of (STFT, frequencies, times) or None if audio is too short
@@ -149,8 +156,8 @@ def _compute_stft(
         windowed = frame * window
         D[:, i] = np.fft.rfft(windowed)
 
-    freqs = np.fft.rfftfreq(n_fft, 1.0 / 44100)
-    times = np.arange(n_frames) * hop_length / 44100
+    freqs = np.fft.rfftfreq(n_fft, 1.0 / sample_rate)
+    times = np.arange(n_frames) * hop_length / sample_rate
 
     return D, freqs, times
 

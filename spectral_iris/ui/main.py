@@ -11,6 +11,9 @@ import threading
 from dataclasses import dataclass, field
 from typing import Any, Callable, Dict, List, Optional
 
+import numpy as np
+from numpy.typing import NDArray
+
 try:
     import dearpygui.dearpygui as dpg
     DPG_AVAILABLE = True

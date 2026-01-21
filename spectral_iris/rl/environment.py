@@ -13,6 +13,10 @@ import numpy as np
 from numpy.typing import NDArray
 
 
+# Small epsilon value to avoid log(0) and division by zero
+EPSILON = 1e-10
+
+
 @dataclass
 class CorrectionAction:
     """Represents a correction action taken by the RL agent."""
@@ -261,7 +265,7 @@ class SpectralCorrectionEnv:
             )
 
         # Convert to dB
-        db = 20 * np.log10(spectrum + 1e-10)
+        db = 20 * np.log10(spectrum + EPSILON)
 
         return db
 

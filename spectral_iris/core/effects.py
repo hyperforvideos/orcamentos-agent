@@ -410,11 +410,13 @@ class GranularSutil:
                     fade_in = np.linspace(0, 1, fade_len)
                     fade_out = np.linspace(1, 0, fade_len)
 
+                    # At start: fade out original, fade in processed
                     processed[:fade_len] = (
                         segment[:fade_len] * fade_out + processed[:fade_len] * fade_in
                     )
+                    # At end: fade out processed, fade in original
                     processed[-fade_len:] = (
-                        segment[-fade_len:] * fade_in + processed[-fade_len:] * fade_out
+                        segment[-fade_len:] * fade_out + processed[-fade_len:] * fade_in
                     )
 
                 output[start:end] = audio[start:end] * (1 - amount) + processed * amount

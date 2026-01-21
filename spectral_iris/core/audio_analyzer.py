@@ -326,6 +326,7 @@ def compute_stft(
     n_fft: int = 4096,
     hop_length: int = 1024,
     window: str = "blackmanharris",
+    sample_rate: int = 44100,
 ) -> Tuple[NDArray[np.complex128], NDArray[np.floating], NDArray[np.floating]]:
     """Compute Short-Time Fourier Transform.
 
@@ -334,14 +335,17 @@ def compute_stft(
         n_fft: FFT size
         hop_length: Hop length between frames
         window: Window function name
+        sample_rate: Audio sample rate in Hz
 
     Returns:
         Tuple of (STFT complex array, frequencies, times)
     """
     if librosa is not None:
         D = librosa.stft(audio, n_fft=n_fft, hop_length=hop_length, window=window)
-        freqs = librosa.fft_frequencies(sr=44100, n_fft=n_fft)
-        times = librosa.frames_to_time(np.arange(D.shape[1]), hop_length=hop_length)
+        freqs = librosa.fft_frequencies(sr=sample_rate, n_fft=n_fft)
+        times = librosa.frames_to_time(
+            np.arange(D.shape[1]), sr=sample_rate, hop_length=hop_length
+        )
         return D, freqs, times
 
     # Fallback implementation
@@ -369,8 +373,8 @@ def compute_stft(
         fft_result = np.fft.rfft(windowed)
         D[:, i] = fft_result
 
-    freqs = np.fft.rfftfreq(n_fft, 1.0 / 44100)
-    times = np.arange(n_frames) * hop_length / 44100
+    freqs = np.fft.rfftfreq(n_fft, 1.0 / sample_rate)
+    times = np.arange(n_frames) * hop_length / sample_rate
 
     return D, freqs, times
 
