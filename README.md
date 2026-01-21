@@ -1,6 +1,48 @@
 # orcamentos-agent
 Agente de automação para coletar orçamentos do WhatsApp, formatá-los e integrar ao Bling.
 
+## Spectral Iris - Sistema de Correção de Áudio
+
+Este repositório também inclui o **Spectral Iris**, um sistema avançado de processamento de áudio para correção de picos espectrais com interface cyber-temática.
+
+### Recursos do Spectral Iris
+
+- **Análise de Áudio**: LUFS (ITU-R BS.1770-4), True Peak, análise espectral
+- **Detecção de Picos**: Classificação em 4 tipos (isolados, clusters, banda larga, modulantes)
+- **Correção Inteligente**: Micro-compressão, de-essing espectral, saturação soft
+- **Análise Psicoacústica**: Modelo de mascaramento auditivo baseado em ERB
+- **Efeitos Avançados**: Glitter (ar HF), Pitty Filter (HPF dinâmico), Granular Sutil
+- **Interface Cyber**: UI estilo terminal com Dear PyGui
+
+### Uso do Spectral Iris
+
+```bash
+# Modo CLI - processar arquivo de áudio
+python -m spectral_iris input.wav -o output.wav
+
+# Com threshold personalizado
+python -m spectral_iris input.wav -t -0.5 -a 0.7 -o output.wav
+
+# Apenas análise
+python -m spectral_iris input.wav --analyze
+
+# Modo GUI
+python -m spectral_iris --gui
+```
+
+### API Python
+
+```python
+from spectral_iris import SpectralIrisProcessor
+
+processor = SpectralIrisProcessor()
+metrics = processor.load_audio("input.wav")
+print(f"LUFS: {metrics.lufs_integrated}, Peak: {metrics.true_peak_db}")
+
+processed = processor.process(threshold_db=-0.3, aggressiveness=0.5)
+processor.save_audio(processed, "output.wav")
+```
+
 ## Instalação
 
 Clone este repositório e crie um ambiente virtual (exemplo usando Python):
